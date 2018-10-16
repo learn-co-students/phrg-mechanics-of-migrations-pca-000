@@ -376,4 +376,7 @@ actually time to add that column, you can just run `rake db:migrate` again!
 
 Woohoo!
 
+## Does this need an update?
+Please open a [GitHub issue](https://github.com/learn-co-curriculum/phrg-mechanics-of-migrations/issues) or [pull-request](https://github.com/learn-co-curriculum/phrg-mechanics-of-migrations/pulls). Provide a detailed description that explains the issue you have found or the change you are proposing. Then "@" mention your instructor on the issue or pull-request, and send them a link via Connect.
+
 <p data-visibility='hidden'>PHRG Let's Learn About Migrations</p>
