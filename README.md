@@ -2,23 +2,15 @@
 
 ## Objective
 
-1. Create, connect to, and manipulate a SQLite database using ActiveRecord.
+1. Create, connect to, and manipulate a SQLite database using `ActiveRecord`.
 
 ## Setup
 
-1. We're going to use the `activerecord` gem to create a mapping between our
-   database and model.
-2. While this is marked as a Readme, you should code-along with this document.
-   If you have access to a Flatiron School sandbox (you'll see a blue button up
-   top), launch it. If you're working on a local system, simply open a new
-   terminal window.
-3. Once you're in a terminal environment, issue `git clone <clone source
-   path>`. You'll find the path by clicking on the "Clone or download" button
-   at the [repo][].
+1. We're going to use the `activerecord` gem to create a mapping between our database and model.
+2. While this is marked as a Readme, you should code-along with this document. If you have access to a Flatiron School sandbox (you'll see a blue button up top), launch it. If you're working on a local system, simply open a new terminal window.
+3. Once you're in a terminal environment, issue `git clone <clone source path>`. You'll find the path by clicking on the "Clone or download" button at the [repo][].
 4. `cd` into the cloned directory e.g. `cd mechanics-of-migrations-v-000/`
 5. Ensure you can `bundle` in the directory: `bundle install`
-6. If that works, then you're ready to proceed. If not, use a help resource
-   like Ask a Question or ask a facilitator.
 
 ## Migrations
 
@@ -49,11 +41,8 @@ at the appropriate time.
 
 ### Setting Up Your Migration
 
-1. Create a directory called `db` at the top level of the lesson's directory.
-   Then, within the `db` directory, create a `migrate` directory. The
-   `mkdir` command is the appropriate tool to use here.
-2. In the `db/migrate ` directory, create a file called `01_create_artists.rb`
-   (we'll talk about why we added the `01` later).
+1. Create a directory called `db` at the top level of the lesson's directory. Then, within the `db` directory, create a `migrate` directory. The `mkdir` command is the appropriate tool to use here.
+2. In the `db/migrate ` directory, create a file called `01_create_artists.rb` (we'll talk about why we added the `01` later).
 
 ```text
 mechanics-of-migrations-v-000/
@@ -80,7 +69,7 @@ mechanics-of-migrations-v-000/
 ```ruby
 # db/migrate/01_create_artists.rb
 
-class CreateArtists < ActiveRecord::Migration
+class CreateArtists < ActiveRecord::Migration[5.2]
   def up
   end
 
@@ -91,11 +80,9 @@ end
 
 ### Active Record Migration Methods: up, down, change
 
-Here we're creating a class called `CreateArtists` that inherits from
-ActiveRecord's `ActiveRecord::Migration` module. Within the class we have an
-`up` method to define the code to execute when the migration is run and a
-`down` method to define the code to execute when the migration is rolled back.
-Think of it like "do" and "undo."
+Here we're creating a class called `CreateArtists` that inherits from ActiveRecord's `ActiveRecord::Migration` module. Because the `Gemfile.lock` of this project has specified version `5.2` of `ActiveRecord`, `[5.2]` is passed to `ActiveRecord::Migration`. (Note: In other projects, if a different version of `ActiveRecord` is specified, then pass that version instead of `5.2`.)
+
+Within the class we have an `up` method to define the code to execute when the migration is run and a `down` method to define the code to execute when the migration is rolled back. Think of it like "do" and "undo."
 
 Another method is available to use besides `up` and `down`: `change`, which is
 more common for basic migrations.
@@ -103,7 +90,7 @@ more common for basic migrations.
 ```ruby
 # db/migrate/01_create_artists.rb
 
-class CreateArtists < ActiveRecord::Migration
+class CreateArtists < ActiveRecord::Migration[5.2]
   def change
   end
 end
@@ -170,7 +157,7 @@ No point in having a table that has no columns in it, so lets add a few:
 ```ruby
 # db/migrate/01_create_artists.rb
 
-class CreateArtists < ActiveRecord::Migration
+class CreateArtists < ActiveRecord::Migration[5.2]
   def change
     create_table :artists do |t|
       t.string :name
@@ -322,7 +309,7 @@ To make this change we're going to need a new migration, which we'll call
 ```ruby
 # db/migrate/02_add_favorite_food_to_artists.rb
 
-class AddFavoriteFoodToArtists < ActiveRecord::Migration
+class AddFavoriteFoodToArtists < ActiveRecord::Migration[5.2]
   def change
     add_column :artists, :favorite_food, :string
   end
@@ -377,6 +364,6 @@ actually time to add that column, you can just run `rake db:migrate` again!
 Woohoo!
 
 ## Does this need an update?
+
 Please open a [GitHub issue](https://github.com/learn-co-curriculum/phrg-mechanics-of-migrations/issues) or [pull-request](https://github.com/learn-co-curriculum/phrg-mechanics-of-migrations/pulls). Provide a detailed description that explains the issue you have found or the change you are proposing. Then "@" mention your instructor on the issue or pull-request, and send them a link via Connect.
 
-<p data-visibility='hidden'>PHRG Let's Learn About Migrations</p>
